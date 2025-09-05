@@ -1,4 +1,3 @@
-// src/pages/Utama.js
 import React from "react";
 import { Box, Grid, Typography, Card, CardContent } from "@mui/material";
 import { motion } from "framer-motion";
@@ -8,6 +7,9 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import GavelIcon from "@mui/icons-material/Gavel";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import BalanceIcon from "@mui/icons-material/Balance";
+import ForestIcon from "@mui/icons-material/Forest";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import LanguageIcon from "@mui/icons-material/Language";
 
 const items = [
   {
@@ -51,6 +53,24 @@ const items = [
     description:
       "Nilai teras ini mesti dipertahankan selaras dengan Perlembagaan dengan mengambil kira taraf kemajuan sosioekonomi kaum yang berbeza.",
     icon: <BalanceIcon sx={{ fontSize: 48, color: "primary.main" }} />,
+  },
+  {
+    number: "7",
+    title: "Pembangunan Mampan",
+    description: "Pembangunan mampan adalah pembangunan yang memenuhi keperluan semasa serta masa hadapan bagi mencapai keseimbangan pembangunan ekonomi, sosial, demografi dan alam sekitar.",
+    icon: <ForestIcon sx={{ fontSize: 48, color: "primary.main" }} />,
+  },
+  {
+    number: "8",
+    title: "Keselamatan Rakyat",
+    description: "Perkembangan idea dan persekitaran keselamatan dunia menyaksikan perubahan daripada pendekatan keselamatan berpaksikan negara (state centric security) kepada pendekatan keselamatan berpaksikan insan (people centric security).",
+    icon: <VerifiedUserIcon sx={{ fontSize: 48, color: "primary.main" }} />,
+  },
+  {
+    number: "9",
+    title: "Pengiktirafan Antarabangsa",
+    description: "Sikap pragmatik, berprinsip dan berkecuali Malaysia selama ini, telah menjamin pengiktirafan dan kerjasama ekonomi, politik dan keselamatan yang berterusan dengan kuasa-kuasa besar serantau dan antarabangsa.",
+    icon: <LanguageIcon sx={{ fontSize: 48, color: "primary.main" }} />,
   },
 ];
 
@@ -104,7 +124,7 @@ export default function Utama() {
                 >
                   <Typography
                     variant="h6"
-                    sx={{ fontWeight: "bold", mb: 1, color: "primary.main" }}
+                    sx={{ fontWeight: "bold", mb: 1, color: "black" }}
                   >
                     {item.number}. {item.title}
                   </Typography>

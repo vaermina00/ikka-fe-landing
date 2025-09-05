@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Utama from "./pages/Utama";
+import Utama from "./pages/Utama/Utama";
 import TerasKDN from "./pages/TerasKDN";
 import TentangKajian from "./pages/TentangKajian";
 import AktivitiKajian from "./pages/AktivitiKajian";
