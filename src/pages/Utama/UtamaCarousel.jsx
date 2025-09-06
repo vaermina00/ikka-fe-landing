@@ -1,124 +1,136 @@
-import React from "react";
-import { Box, Grid, Typography, Card, CardContent } from "@mui/material";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// src/components/QuotesCarousel.jsx
+import React, { useState, useEffect } from "react";
+import { Box, Card, CardContent, Typography, Avatar } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
 
-import IconButton from "@mui/material/IconButton";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-
-const slides = [
+const quotes = [
     {
-        title: "Explore the Mountains",
-        description:
-            "Experience breathtaking views and fresh air. Experience breathtaking views and fresh air.",
-        image: "https://picsum.photos/id/1018/400/300",
+        text: "Keselamatan negara, asasnya adalah perlembagaan persekutuan dan rukun negara. Jadi, kita perlu faham tentang ini. Walaupun dalam keadaan-keadaan tertentu, kita lihat seperti tidak bersepadu; namun sebenarnya perpaduan kita adalah dalam keadaan yang sangat baik. Ianya ditonjolkan dalam Indeks Perpaduan. Kita boleh guna Indeks Perpaduan bagi melihat tahap perpaduan dalam negara kita.",
+        author: "YBHG. DATO’ INDERA NORIDAH ABD RAHIM",
+        designation: "Mantan Ketua Setiausaha, Kementerian Perpaduan Negara (KPN)",
+        image: "https://ikk.gov.my/wp-content/uploads/2025/07/Screenshot-2025-07-27-104952.png",
     },
     {
-        title: "Relax at the Beach",
-        description: "Feel the sand between your toes.",
-        image: "https://picsum.photos/id/1025/400/300",
+        text: "Keselamatan negara, asasnya adalah perlembagaan persekutuan dan rukun negara. Jadi, kita perlu faham tentang ini. Walaupun dalam keadaan-keadaan tertentu, kita lihat seperti tidak bersepadu; namun sebenarnya perpaduan kita adalah dalam keadaan yang sangat baik. Ianya ditonjolkan dalam Indeks Perpaduan. Kita boleh guna Indeks Perpaduan bagi melihat tahap perpaduan dalam negara kita.",
+        author: "YBHG. DATO’ INDERA NORIDAH ABD RAHIM",
+        designation: "Mantan Ketua Setiausaha, Kementerian Perpaduan Negara (KPN)",
+        image: "https://ikk.gov.my/wp-content/uploads/2023/11/tta17.webp",
     },
     {
-        title: "City Adventures",
-        description: "Discover the hidden gems in the city.",
-        image: "https://picsum.photos/id/1035/400/300",
+        text: "Keselamatan negara, asasnya adalah perlembagaan persekutuan dan rukun negara. Jadi, kita perlu faham tentang ini. Walaupun dalam keadaan-keadaan tertentu, kita lihat seperti tidak bersepadu; namun sebenarnya perpaduan kita adalah dalam keadaan yang sangat baik. Ianya ditonjolkan dalam Indeks Perpaduan. Kita boleh guna Indeks Perpaduan bagi melihat tahap perpaduan dalam negara kita.",
+        author: "YBHG. DATO’ INDERA NORIDAH ABD RAHIM",
+        designation: "Mantan Ketua Setiausaha, Kementerian Perpaduan Negara (KPN)",
+        image: "https://ikk.gov.my/wp-content/uploads/2023/11/tta16.webp",
     },
 ];
 
-// MUI arrow components
-function NextArrow(props) {
-    const { onClick } = props;
+const cardVariants = {
+    initial: { opacity: 0, x: 100 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -100 },
+};
+
+const imageVariants = {
+    initial: { y: 50, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: -50, opacity: 0 },
+};
+
+const QuotesCarousel = () => {
+    const [current, setCurrent] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrent((prev) => (prev + 1) % quotes.length);
+        }, 100000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const { text, author, designation, image } = quotes[current];
+
     return (
-        <IconButton
-            onClick={onClick}
-            style={{
-                position: "absolute",
-                right: "-20px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                zIndex: 1,
-                backgroundColor: "rgba(0,0,0,0.5)",
-                color: "#fff",
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
             }}
         >
-            <ArrowForwardIosIcon />
-        </IconButton>
-    );
-}
-
-function PrevArrow(props) {
-    const { onClick } = props;
-    return (
-        <IconButton
-            onClick={onClick}
-            style={{
-                position: "absolute",
-                left: "-20px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                zIndex: 1,
-                backgroundColor: "rgba(0,0,0,0.5)",
-                color: "#fff",
-            }}
-        >
-            <ArrowBackIosNewIcon />
-        </IconButton>
-    );
-}
-
-export default function UtamaCarousel() {
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
-    };
-
-    return (
-        <div sx={{ paddingBottom: 4 }}>
-            <Slider {...settings}>
-                {slides.map((slide, index) => (
-                    <div key={index}>
-                        <Box
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={current}
+                    variants={cardVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={{ duration: 0.8 }}
+                    style={{ width: "100%" }}
+                >
+                    <Card
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            width: "100%",
+                            flexDirection: { xs: "column", md: "row" },
+                        }}
+                    >
+                        {/* Left: Quote */}
+                        <CardContent
                             sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                gap: 2,                   // equivalent to 16px
-                                p: 2,                     // padding
-                                bgcolor: "#f5f5f5",       // background color
-                                minHeight: 250,            // min height in px
-                                boxSizing: "border-box",
+                                flex: 0.64,
+                                pr: 2,
+                                textAlign: { xs: "center", md: "left" },
                             }}
                         >
-                            {/* Left: Text */}
-                            <Box sx={{ textAlign: "left" }}>
-                                <h2 style={{ margin: 0 }}>{slide.title}</h2>
-                                <p style={{ marginTop: 8 }}>{slide.description}</p>
-                            </Box>
-
-                            {/* Right: Image */}
-                            <Box sx={{ textAlign: "right", padding:1}}>
-                                <img
-                                    src={slide.image}
-                                    alt={slide.title}
-                                    style={{
-                                        width: "100%",
-                                        borderRadius: 12,
-                                        objectFit: "cover",
-                                    }}
-                                />
-                            </Box>
-                        </Box>
-                    </div>
-                ))}
-            </Slider>
-
-        </div>
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    whiteSpace: "pre-line",
+                                    mb: 3,
+                                    fontSize: "1rem"
+                                }}
+                            >
+                                "{text}"
+                            </Typography>
+                            <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+                                - {author}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {designation}
+                            </Typography>
+                        </CardContent>
+                        {/* Right: Image */}
+                        <motion.div
+                            variants={imageVariants}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            transition={{ duration: 0.8 }}
+                            style={{
+                                flex: 0.35,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
+                            <Avatar
+                                src={image}
+                                alt={author}
+                                sx={{
+                                    width: "100%",
+                                    height: "auto",
+                                    aspectRatio: "1 / 1",
+                                    borderRadius: 3,
+                                    p: 2,
+                                }}
+                            />
+                        </motion.div>
+                    </Card>
+                </motion.div>
+            </AnimatePresence>
+        </Box>
     );
-}
+};
+
+export default QuotesCarousel;
