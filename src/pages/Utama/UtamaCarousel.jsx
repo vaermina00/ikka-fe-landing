@@ -70,7 +70,6 @@ function PrevArrow(props) {
 
 export default function UtamaCarousel() {
     const settings = {
-        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -81,7 +80,7 @@ export default function UtamaCarousel() {
     };
 
     return (
-        <div>
+        <div sx={{ paddingBottom: 4 }}>
             <Slider {...settings}>
                 {slides.map((slide, index) => (
                     <div key={index}>
