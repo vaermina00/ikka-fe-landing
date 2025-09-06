@@ -6,7 +6,7 @@ import Utama from "./pages/Utama/Utama";
 import TerasKDN from "./pages/TerasKDN/TerasKDN";
 import TentangKajian from "./pages/TentangKajian";
 import AktivitiKajian from "./pages/AktivitiKajian";
-import Agensi from "./pages/Agensi";
+import Agensi from "./pages/Agensi/Agensi";
 
 export default function App() {
   return (
