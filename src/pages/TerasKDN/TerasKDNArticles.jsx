@@ -110,7 +110,6 @@ export default function TerasKDNArticles() {
                                     sx={{
                                         height: 200,
                                         objectFit: "cover",
-                                        borderRadius: 2,
                                     }}
                                 />
 
