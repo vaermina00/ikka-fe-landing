@@ -1,6 +1,6 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Box, Button, Divider } from "@mui/material";
-import { Link } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Box, Divider, Button } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 export default function TopNavbar() {
@@ -37,17 +37,30 @@ export default function TopNavbar() {
                 elevation={0}
                 sx={{ bgcolor: "white", color: "black", px: "250px" }}
             >
-                <Toolbar
-                    disableGutters
-                    sx={{
-                        gap: 3,
-                    }}
-                >
-                    <Button color="inherit" component={Link} to="/">Utama</Button>
-                    <Button color="inherit" component={Link} to="/teras-kdn">Teras KDN</Button>
-                    <Button color="inherit" component={Link} to="/tentang-kajian">Tentang Kajian</Button>
-                    <Button color="inherit" component={Link} to="/aktiviti-kajian">Aktiviti Kajian</Button>
-                    <Button color="inherit" component={Link} to="/agensi">Agensi</Button>
+                <Toolbar disableGutters sx={{ gap: 3 }}>
+                    {[
+                        { label: "Utama", path: "/" },
+                        { label: "Teras KDN", path: "/teras-kdn" },
+                        { label: "Tentang Kajian", path: "/tentang-kajian" },
+                        { label: "Aktiviti Kajian", path: "/aktiviti-kajian" },
+                        { label: "Agensi", path: "/agensi" },
+                    ].map((item) => (
+                        <Button
+                            key={item.path}
+                            component={NavLink}
+                            to={item.path}
+                            sx={{
+                                fontWeight: "normal",
+                                color: "black",
+                                "&.active": {
+                                    fontWeight: "bold",
+                                    color: "#1976d2", // active color
+                                },
+                            }}
+                        >
+                            {item.label}
+                        </Button>
+                    ))}
                 </Toolbar>
             </AppBar>
             <Divider />

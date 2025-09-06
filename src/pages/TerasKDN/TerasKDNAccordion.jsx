@@ -67,7 +67,14 @@ export default function TerasKDNAccordion() {
     }
 
     return (
-        <div>
+        <div className="mb-10">
+            <Typography
+                variant="h4"
+                gutterBottom
+                sx={{ fontWeight: "bold", textAlign: "center", mb: 4 }}
+            >
+                Teras
+            </Typography>
             {data.map((item, i) => (
                 <Accordion
                     key={i}
@@ -111,12 +118,12 @@ export default function TerasKDNAccordion() {
                                     image={item.image}
                                     alt={item.title}
                                     sx={{
-                                        width: "100%",        // full width
-                                        height: 400,          // set your desired height (e.g. 250, 300, etc.)
+                                        width: "100%",
+                                        height: 400,
                                         borderRadius: 2,
                                         marginBottom: 4,
-                                        objectFit: "cover",   // crop top/bottom, keep aspect ratio
-                                        objectPosition: "center" // center focus (can use "top", "bottom" too)
+                                        objectFit: "cover",
+                                        objectPosition: "center"
                                     }}
                                 />
 
